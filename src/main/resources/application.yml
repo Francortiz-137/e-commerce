@@ -1,0 +1,19 @@
+
+#database connection
+spring:
+  datasource:
+    password: ${DB_PASSWORD_MYSQL}
+    url: jdbc:mysql://${DB_HOST_MYSQL}:${DB_PORT_MYSQL}/${DB_NAME_MYSQL}
+    username: ${DB_USER_MYSQL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: create-drop
+
+    show-sql: true
+
+  jackson:
+    time-zone: America/Santiago
+    locale: es_CL
