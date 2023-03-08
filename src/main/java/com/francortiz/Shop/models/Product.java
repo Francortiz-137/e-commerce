@@ -1,5 +1,6 @@
 package com.francortiz.Shop.models;
 
+import com.francortiz.Shop.enums.Type;
 import com.francortiz.Shop.exceptions.InvalidPriceException;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
@@ -23,13 +24,13 @@ public class Product {
     @Nonnull
     private String name;
     @Nonnull
-    private String type;
+    private Type type;
     private String description;
     @Nonnull
     private Double price;
     private String photo;
 
-    public Product(String name, String type, String description, Double price, String photo) {
+    public Product(String name, Type type, String description, Double price, String photo) {
         this.name = name;
         this.type =type;
         this.description = description;

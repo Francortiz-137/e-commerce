@@ -1,9 +1,13 @@
 package com.francortiz.Shop.models;
 
+import com.francortiz.Shop.enums.Type;
 import com.francortiz.Shop.exceptions.InvalidPriceException;
+import jakarta.activation.MimetypesFileTypeMap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,22 +44,34 @@ class ProductTest {
     @Test
     void test_type_product() {
 
-        this.product.setType("Producto");
-        String expected = "Producto";
+        this.product.setType(Type.ELECTRONICOS);
+        Type expected = Type.valueOf("ELECTRONICOS");
 
         assertEquals( expected, this.product.getType());
-        //TODO assert typo corresponda enum types
+
+    }
+
+    @Test
+    void test_not_unknown_type_product() {
+
+        assertThrows( RuntimeException.class,() -> this.product.setType(Type.valueOf("NEW_TYPE")));
+
     }
 
     @Test
     void test_photo_product() {
 
-        this.product.setPhoto("Producto");
-        String expected = "Producto";
+        this.product.setPhoto("img1.jpg");
+        String expected = "img1.jpg";
+
+        File f = new File("img1.jpg");
+        String mimetype= new MimetypesFileTypeMap().getContentType(f);
+        String type = mimetype.split("/")[0];
 
         assertEquals( expected, this.product.getPhoto());
-
-        //TODO assert path points to an actual img if not throws an exception
+        assertNotNull(f);
+        //assertTrue(f.exists());
+        assertEquals("image", type);
     }
 
     @Test

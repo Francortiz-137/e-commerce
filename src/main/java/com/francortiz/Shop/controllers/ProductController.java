@@ -23,8 +23,8 @@ public class ProductController {
         return new ResponseEntity<List<Product>>(productService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/items/{:id}")
-    public ResponseEntity<Product> getItem(@RequestParam Long id){
+    @GetMapping("/items/{id}")
+    public ResponseEntity<Product> getItem(@PathVariable Long id){
         return new ResponseEntity<Product>(productService.findById(id),HttpStatus.OK);
     }
 
@@ -33,12 +33,13 @@ public class ProductController {
         return new ResponseEntity<Product>(productService.save(product),HttpStatus.OK);
     }
 
-    @DeleteMapping("/items/{:id}")
-    public ResponseEntity<?> deleteItem(@RequestParam Long id){
+    @DeleteMapping("/items/{id}")
+    public ResponseEntity<?> deleteItem(@PathVariable Long id){
+        productService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping
+    @PutMapping("/items/{id}")
     public ResponseEntity<Product> editItem(@RequestBody Product product){
         return new ResponseEntity<Product>(productService.save(product),HttpStatus.OK);
     }

@@ -1,5 +1,6 @@
 package com.francortiz.Shop;
 
+import com.francortiz.Shop.enums.Type;
 import com.francortiz.Shop.models.Product;
 import com.francortiz.Shop.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,16 @@ public class ShopApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Product p1 = new Product("Television Samsung","electronicos","Television 60\" UHD", 1000000.0,"tele_samsung_01");
-		Product p2 = new Product("Zapatillas","Calzado","zapatillas urbanas color gris", 50000.0,"zapatillas_01");
-		Product p3 = new Product("Poleron","Ropa Hombre","perfecto para cualquier ocacion", 35000.0,"ropa_hombre_01");
-		Product p4 = new Product("Celular","electronicos","lleva tu creatividad a todos lados con el nuevo iphone", 1200000.0,"smartphone_01");
-		Product p5 = new Product("Saco de Boxeo","Deportes","saca todo tu poder frente al mas resistente de los sacos", 30000.0,"box_01");
-		Product p6 = new Product("Chaqueta Mujer","Ropa mujer","chaqueta impermeable perfecta para las lluvias", 130000.0,"woman_01");
-		Product p7 = new Product("Pantalon niño","Ropa niño","pantalon color caqui", 3000.0,"kid_01");
-		Product p8 = new Product("Cama King Size","Muebles y hogar","Cama para un rey como tu", 1500000.0,"bed_01");
-		Product p9 = new Product("Comedor","Muebles y hogar","comedor con 6 sillas", 400000.0,"dinning_01");
-		Product p10 = new Product("Max Steel","electronicos","muneco de accion articulable", 12000.0,"toy_01");
+		Product p1 = new Product("Television Samsung", Type.ELECTRONICOS,"Television 60\" UHD", 1000000.0,"tele_samsung_01");
+		Product p2 = new Product("Zapatillas",Type.ZAPATERIA,"zapatillas urbanas color gris", 50000.0,"zapatillas_01");
+		Product p3 = new Product("Poleron",Type.ROPA_HOMBRE,"perfecto para cualquier ocacion", 35000.0,"ropa_hombre_01");
+		Product p4 = new Product("Celular",Type.ELECTRONICOS,"lleva tu creatividad a todos lados con el nuevo iphone", 1200000.0,"smartphone_01");
+		Product p5 = new Product("Saco de Boxeo",Type.DEPORTES,"saca todo tu poder frente al mas resistente de los sacos", 30000.0,"box_01");
+		Product p6 = new Product("Chaqueta Mujer",Type.ROPA_MUJER,"chaqueta impermeable perfecta para las lluvias", 130000.0,"woman_01");
+		Product p7 = new Product("Pantalon niño",Type.ROPA_NINO,"pantalon color caqui", 3000.0,"kid_01");
+		Product p8 = new Product("Cama King Size",Type.HOGAR,"Cama para un rey como tu", 1500000.0,"bed_01");
+		Product p9 = new Product("Comedor",Type.HOGAR,"comedor con 6 sillas", 400000.0,"dinning_01");
+		Product p10 = new Product("Max Steel",Type.JUGETERIA,"muneco de accion articulable", 12000.0,"toy_01");
 
 
 		productRepository.save(p1);

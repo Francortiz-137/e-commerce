@@ -1,5 +1,6 @@
 package com.francortiz.Shop.services.impl;
 
+import com.francortiz.Shop.exceptions.ProductNotFoundException;
 import com.francortiz.Shop.models.Product;
 import com.francortiz.Shop.repositories.ProductRepository;
 import com.francortiz.Shop.services.IProductService;
@@ -24,11 +25,16 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public Product findById(Long id) {
-        return productRepository.findById(id).get();
+        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("No se encuentra el producto con id:" + id));
     }
 
     @Override
     public Product save(Product product) {
         return productRepository.save(product);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
     }
 }
