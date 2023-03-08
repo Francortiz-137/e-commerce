@@ -2,17 +2,23 @@ package com.francortiz.Shop;
 
 import com.francortiz.Shop.enums.Type;
 import com.francortiz.Shop.models.Product;
+import com.francortiz.Shop.models.User;
 import com.francortiz.Shop.repositories.ProductRepository;
+import com.francortiz.Shop.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class ShopApplication implements CommandLineRunner {
 
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	UserRepository userRepository;
 
 	public static void main(String[] args) {
 
@@ -45,5 +51,8 @@ public class ShopApplication implements CommandLineRunner {
 		productRepository.save(p8);
 		productRepository.save(p9);
 		productRepository.save(p10);
+
+		User u1 = new User("John","Doe","johndoe@example.com","password","","+123456789", LocalDateTime.now(), LocalDateTime.now());
+		userRepository.save(u1);
 	}
 }
