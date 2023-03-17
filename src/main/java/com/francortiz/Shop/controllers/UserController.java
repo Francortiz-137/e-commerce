@@ -1,15 +1,14 @@
 package com.francortiz.Shop.controllers;
 
+import com.francortiz.Shop.models.User;
 import com.francortiz.Shop.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins= {"http://localhost:4200","*"})
 @RequestMapping("/api/users")
 public class UserController {
 
@@ -25,6 +24,22 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getUser(@PathVariable Long id){
         return new ResponseEntity<>( userService.findById(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<?> createUser(@RequestBody User user){
+        return new ResponseEntity<>( userService.save(user),HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable Long id){
+        return new ResponseEntity<>(userService.update(user,id),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id){
+        userService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
