@@ -41,5 +41,4 @@ public class UserController {
         userService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

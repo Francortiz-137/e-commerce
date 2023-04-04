@@ -61,7 +61,9 @@ public class ShopApplication implements CommandLineRunner {
 		userRepository.save(u1);
 
 		Role r1 = new Role("ADMIN");
+		Role r2 = new Role("USER");
 		roleRepository.save(r1);
+		roleRepository.save(r2);
 
 		u1.setRoles(List.of(r1));
 		userRepository.save(u1);

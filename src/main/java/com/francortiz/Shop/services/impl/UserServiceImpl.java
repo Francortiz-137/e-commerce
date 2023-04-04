@@ -2,6 +2,7 @@ package com.francortiz.Shop.services.impl;
 
 import com.francortiz.Shop.exceptions.UserNotFoundException;
 import com.francortiz.Shop.models.User;
+import com.francortiz.Shop.repositories.RoleRepository;
 import com.francortiz.Shop.repositories.UserRepository;
 import com.francortiz.Shop.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
@@ -31,17 +34,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User update(User userUpdate, Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("El usuario ingresado no existe"));
-        user.setEmail(userUpdate.getEmail());
-        user.setAddress(userUpdate.getAddress());
-        user.setFirstName(userUpdate.getFirstName());
-        user.setLastName(userUpdate.getLastName());
-        user.setPassword(userUpdate.getPassword());
-        user.setPhone(userUpdate.getPhone());
-        user.setCart(userUpdate.getCart());
-        user.setUpdatedAt(userUpdate.getUpdatedAt());
-        user.setCreatedAt(userUpdate.getCreatedAt());
-        user.setRoles(user.getRoles());
-        return userRepository.save(user);
+        return userRepository.save(userUpdate);
     }
 
     @Override

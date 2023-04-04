@@ -28,7 +28,7 @@ public class User {
     @Column(length = 20)
     private String lastName;
     @Nonnull
-    @Column(unique = true, length = 20)
+    @Column(unique = true, length = 30)
     @Email(message = "no es una direccion de correo bien formada")
     private String email;
     @Nonnull

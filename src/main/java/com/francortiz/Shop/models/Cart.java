@@ -25,6 +25,7 @@ public class Cart {
     @JoinColumn(name="cart_id")
     private List<CartItem> items = new ArrayList<CartItem>();
 
+    @JsonIgnoreProperties(value={"user","hibernateLazyInitializer", "handler"},allowSetters = true)
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="cart_id")
     private User user;
@@ -40,4 +41,5 @@ public class Cart {
     public void addCartItems(CartItem cartItem){
         items.add(cartItem);
     }
+
 }
