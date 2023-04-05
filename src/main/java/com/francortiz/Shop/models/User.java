@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -57,6 +58,10 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private Cart cart = new Cart();
 
+    @JsonIgnoreProperties(value={"user","hibernateLazyInitializer", "handler"},allowSetters = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Order> orders= new ArrayList<Order>();
+
     public User(String firstName, String lastName, String email, String password, String address, String phone, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -67,4 +72,5 @@ public class User {
         this.CreatedAt = createdAt;
         this.UpdatedAt = updatedAt;
     }
+
 }

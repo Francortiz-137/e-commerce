@@ -23,7 +23,7 @@ public class Product {
     private String name;
     @Nonnull
     private Type type;
-    @Column(unique = true, length = 100)
+    @Column(length = 100)
     private String description;
     @Nonnull
     private Double price;
