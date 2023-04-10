@@ -1,5 +1,6 @@
 package com.francortiz.Shop.controllers;
 
+import com.francortiz.Shop.enums.Type;
 import com.francortiz.Shop.models.Product;
 import com.francortiz.Shop.services.IProductService;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,10 @@ public class ProductController {
     }
 
     @GetMapping("/items")
-    public ResponseEntity<List<Product>> listItems(){
-        return new ResponseEntity<List<Product>>(productService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Product>> listItems(@RequestParam(required = false) List<Type> filters){
+        if(filters == null || filters.isEmpty() )
+            return new ResponseEntity<List<Product>>(productService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(productService.findAllByTypeIn(filters), HttpStatus.OK);
     }
 
     @GetMapping("/items/{id}")

@@ -1,5 +1,6 @@
 package com.francortiz.Shop.services.impl;
 
+import com.francortiz.Shop.enums.Type;
 import com.francortiz.Shop.exceptions.ProductNotFoundException;
 import com.francortiz.Shop.models.Product;
 import com.francortiz.Shop.repositories.ProductRepository;
@@ -36,5 +37,10 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public void deleteById(Long id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Product> findAllByTypeIn(List<Type> filters) {
+        return productRepository.findAllByTypeIn(filters);
     }
 }
