@@ -22,7 +22,7 @@ public class OrderController {
     IOrderService orderService;
 
     @GetMapping("/{id}/order")
-    public ResponseEntity<?> getUserorders(@PathVariable Long id){
+    public ResponseEntity<?> getUserOrders(@PathVariable Long id){
         return new ResponseEntity<>( orderService.findByUserId(id), HttpStatus.OK);
     }
 
