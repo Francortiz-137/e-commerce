@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins= {"http://localhost:4200","*"})
 @RequestMapping("/api/users")
 public class OrderController {
-
+    //TODO get surrent user logged
     @Autowired
     IUserService userService;
 

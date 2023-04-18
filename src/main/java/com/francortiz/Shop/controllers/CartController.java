@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 public class CartController {
 
+    //TODO get user currently logged in
     @Autowired
     IUserService userService;
 
